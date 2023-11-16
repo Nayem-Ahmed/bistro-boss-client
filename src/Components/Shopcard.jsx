@@ -11,7 +11,7 @@ const Shopcard = ({card}) => {
           <h2 className="card-title">{name}</h2>
           <p>{recipe}</p>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">Add cart</button>
           </div>
         </div>
       </div>

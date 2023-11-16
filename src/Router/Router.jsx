@@ -6,6 +6,8 @@ import Contactus from "../Components/Contactus";
 import Dashboard from "../Components/Dashboard";
 import Ourmenu from "../Components/Ourmenu";
 import Ourshop from "../Components/Ourshop";
+import SignIn from "../Pages/SignIn";
+import SignUp from "../Pages/SignUp";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +35,10 @@ const router = createBrowserRouter([
                 path:"/ourshop",
                 element:<Ourshop></Ourshop>,
             },
-        ]
+        ],
+        
     },
+    {path:'/login', element:<SignIn></SignIn>},
+    {path:'/signup', element:<SignUp></SignUp>}
 ])
 export default router;
