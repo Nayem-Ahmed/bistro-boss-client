@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { TiSocialFacebook } from "react-icons/ti";
 import { IoLogoGoogle, IoLogoGithub } from "react-icons/io";
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
@@ -10,6 +10,8 @@ import { Helmet } from 'react-helmet-async';
 
 const SignIn = () => {
     const { loginUser } = useContext(AuthContext)
+    const location = useLocation();
+  const navigate = useNavigate();
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -25,6 +27,7 @@ const SignIn = () => {
             .then((result) => {
                 console.log(result.user);
                 alert('Login success')
+                navigate(location?.state ? location.state : '/');
             })
             .catch((error) => {
                 console.error(error)

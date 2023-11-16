@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/Authproviders';
+import { updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext)
@@ -21,6 +22,11 @@ const SignUp = () => {
     createUser(data.email, data.password)
     .then((result) => {
         console.log(result.user);
+        alert('create user')
+        
+        updateProfile(result.user,{
+          photoURL: data.photo,
+        })
     })
     .catch((error) => {
         console.error(error)
@@ -40,6 +46,18 @@ const SignUp = () => {
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <h2 className="text-center font-semibold text-xl">Signup</h2>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="url"
+                  {...register('photo')}
+                  className={`input input-bordered `}
+                />
+               
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
