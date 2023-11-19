@@ -1,31 +1,36 @@
 import React, { useContext } from 'react';
-import {Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
 import { AuthContext } from '../../Providers/Authproviders';
-
-
-const Navbar = () => {
-    const{user,logOut} = useContext(AuthContext);
-
+import { BsCart3 } from "react-icons/bs";
+import useTanstrackQuery from '../../Hooks/useTanstrackQuery';
  
-    document.addEventListener('scroll',()=>{
+ 
+
+
+
+const Navbar = () => { 
+    const { user, logOut } = useContext(AuthContext);
+    const [cart] = useTanstrackQuery();
+    console.log(user);
+
+    document.addEventListener('scroll', () => {
         const header = document.querySelector('.navbar');
         if (window.scrollY > 0) {
             header.classList.add('scrolled')
-            
-        }else{
+
+        } else {
             header.classList.remove('scrolled')
         }
     })
     const link = <>
-     <NavLink className='nav' to='/'>Home</NavLink> 
-     <NavLink className='nav' to='/contact'>Contact us</NavLink> 
-     <NavLink className='nav' to='/dashboard'>Dashboard</NavLink> 
-     <NavLink className='nav' to='/ourmenu'>Our menu</NavLink> 
-     <NavLink className='nav' to='/ourshop'>Our shop</NavLink> 
-    
+        <NavLink className='nav' to='/'>Home</NavLink>
+        <NavLink className='nav' to='/contact'>Contact us</NavLink>
+        <NavLink className='nav' to='/ourmenu'>Our menu</NavLink>
+        <NavLink className='nav' to='/ourshop'>Our shop</NavLink>
+
     </>
-       const handlelogout =()=>{
+    const handlelogout = () => {
         logOut()
     }
     return (
@@ -39,25 +44,33 @@ const Navbar = () => {
                         {link}
                     </ul>
                 </div>
-              <Link to= "/">
-                <p className="md:normal-case md:text-xl font-semibold">BISTRO BOSS</p>
-                <aside className='md:tracking-[10px]'>Restaurant</aside>
-              </Link>
+                <Link to="/">
+                    <p className="md:normal-case md:text-xl font-semibold">BISTRO BOSS</p>
+                    <aside className='md:tracking-[10px]'>Restaurant</aside>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                  {link}
+                    {link}
                 </ul>
             </div>
             <div className="navbar-end">
-            {
+
+                <Link to = '/dashboard/cart'>
+                <div className="flex items-center mr-5">
+                    <div className="badge badge-secondary mr-2">+{cart.length} </div>
+                    <BsCart3 className='text-2xl' />
+                </div>
+
+                </Link>
+                {
                     user?.email ?
                         <div className='flex items-center gap-2'>
-                            <img className='rounded-full w-8' src={user.photoURL} alt="" />                  
+                            <img className='rounded-full w-8' src={user.photoURL} alt="" />
                             <Link>
-                            <button onClick={handlelogout} className="btn btn-neutral">Logout</button>
+                                <button onClick={handlelogout} className="btn btn-neutral">Logout</button>
                             </Link>
-                            
+
                         </div>
 
                         :
@@ -65,7 +78,8 @@ const Navbar = () => {
                             <button className="btn btn-neutral">Login</button>
                         </Link>
                 }
-              
+
+
             </div>
         </div>
     );

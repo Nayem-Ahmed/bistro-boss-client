@@ -3,11 +3,12 @@ import Root from "../Mainlayout/Root";
 import Errorpage from "../Pages/Errorpage";
 import Home from "../Pages/Home/Home";
 import Contactus from "../Components/Contactus";
-import Dashboard from "../Components/Dashboard";
-import Ourmenu from "../Components/Ourmenu";
 import Ourshop from "../Components/Ourshop";
+import Ourmenu from "../Components/Ourmenu";
 import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
+import Dashboard from "../Mainlayout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,16 @@ const router = createBrowserRouter([
         
     },
     {path:'/login', element:<SignIn></SignIn>},
-    {path:'/signup', element:<SignUp></SignUp>}
+    {path:'/signup', element:<SignUp></SignUp>},
+    {
+        path:'dashboard',
+        element: <Dashboard></Dashboard>,
+        children:[
+            {
+               path:'cart' ,
+               element:<Cart></Cart>,
+            },
+        ]
+    }
 ])
 export default router;

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TiSocialFacebook } from 'react-icons/ti';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 import { useForm } from 'react-hook-form';
@@ -9,6 +9,7 @@ import { updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const {
     register,
@@ -23,10 +24,10 @@ const SignUp = () => {
     .then((result) => {
         console.log(result.user);
         alert('create user')
-        
         updateProfile(result.user,{
           photoURL: data.photo,
         })
+        navigate('/')
     })
     .catch((error) => {
         console.error(error)
