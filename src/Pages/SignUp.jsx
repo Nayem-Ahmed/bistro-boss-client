@@ -6,9 +6,11 @@ import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/Authproviders';
 import { updateProfile } from 'firebase/auth';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext)
+  const axiosPublic = useAxiosPublic()
+  const { createUser,logingoogle } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const {
@@ -22,6 +24,17 @@ const SignUp = () => {
     // Add your signup logic here
     createUser(data.email, data.password)
     .then((result) => {
+      const userInfo = {
+        photo: data.photo,
+        email : data.email
+      }
+      axiosPublic.post('/users',userInfo)
+      .then(res=>{
+        if(res.data.insertedId) {
+          alert('store database')
+          
+        }
+      })
         console.log(result.user);
         alert('create user')
         updateProfile(result.user,{
@@ -33,6 +46,22 @@ const SignUp = () => {
         console.error(error)
     });
   };
+  const handlelogingoogle = ()=>{
+
+    logingoogle()
+    .then(res=>{
+      if(res.user) {
+        alert('create user')
+        navigate('/')
+        
+      }
+      
+    })
+    .catch((error) => {
+      console.error(error)
+  });
+
+  }
 
   return (
     <>
@@ -102,7 +131,7 @@ const SignUp = () => {
                 <button className="btn btn-circle btn-outline">
                   <TiSocialFacebook />
                 </button>
-                <button className="btn btn-circle btn-outline">
+                <button onClick={handlelogingoogle} className="btn btn-circle btn-outline">
                   <IoLogoGoogle />
                 </button>
                 <button className="btn btn-circle btn-outline">
