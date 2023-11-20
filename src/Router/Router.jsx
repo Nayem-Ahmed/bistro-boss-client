@@ -10,45 +10,53 @@ import SignUp from "../Pages/SignUp";
 import Dashboard from "../Mainlayout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart";
 import Privetroute from "./Privetroute";
+import Allusers from "../Pages/Dashboard/Allusers";
 
 const router = createBrowserRouter([
     {
-        path:"/",
-        element:<Root></Root>,
-        errorElement:<Errorpage></Errorpage>,
-        children:[
+        path: "/",
+        element: <Root></Root>,
+        errorElement: <Errorpage></Errorpage>,
+        children: [
             {
-                path:"/",
-                element:<Home></Home>,
+                path: "/",
+                element: <Home></Home>,
             },
             {
-                path:"/contact",
-                element:<Contactus></Contactus>,
+                path: "/contact",
+                element: <Contactus></Contactus>,
             },
             {
-                path:"/dashboard",
-                element:<Dashboard></Dashboard>,
+                path: "/dashboard",
+                element: <Dashboard></Dashboard>,
             },
             {
-                path:"/ourmenu",
-                element:<Ourmenu></Ourmenu>,
+                path: "/ourmenu",
+                element: <Ourmenu></Ourmenu>,
             },
             {
-                path:"/ourshop",
-                element:<Ourshop></Ourshop>,
+                path: "/ourshop",
+                element: <Ourshop></Ourshop>,
             },
+
+
         ],
-        
+
     },
-    {path:'/login', element:<SignIn></SignIn>},
-    {path:'/signup', element:<SignUp></SignUp>},
+    { path: '/login', element: <SignIn></SignIn> },
+    { path: '/signup', element: <SignUp></SignUp> },
     {
-        path:'dashboard',
-        element:<Privetroute><Dashboard></Dashboard></Privetroute> ,
-        children:[
+        path: '/dashboard',
+        element: <Privetroute><Dashboard></Dashboard></Privetroute>,
+        children: [
             {
-               path:'cart' ,
-               element:<Cart></Cart>,
+                path: 'cart',
+                element: <Cart></Cart>,
+            },
+            // admin
+            {
+                path: "allusers",
+                element: <Allusers></Allusers>,
             },
         ]
     }

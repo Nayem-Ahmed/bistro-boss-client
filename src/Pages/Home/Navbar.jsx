@@ -56,7 +56,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
 
-                <Link to = '/dashboard/cart'>
+                <Link to = '/dashboard'>
                 <div className="flex items-center mr-5">
                     <div className="badge badge-secondary mr-2">+{cart.length} </div>
                     <BsCart3 className='text-2xl' />
