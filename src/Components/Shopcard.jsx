@@ -15,12 +15,14 @@ const Shopcard = ({card}) => {
   const axiosSecure = useAxiosSecure()
   const [,refetch] = useTanstrackQuery()
  
-    const { name, image, recipe,price } = card;
-    
+    const { name, image, recipe,price,_id } = card;
+    console.log(card);
+
     const handleaddcart = (card)=>{
-     if (user && user.email, card) {
+     if (user && user.email) {
       const cartItem = {
         email:user.email,
+        menuId:_id,
         name,
         image,
         price
@@ -38,7 +40,7 @@ const Shopcard = ({card}) => {
      }else{
       Swal.fire({
         title: "You are not login",
-        text: "Yplease login add to the cart",
+        text: "please login add to the cart",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -46,7 +48,7 @@ const Shopcard = ({card}) => {
         confirmButtonText: "Go Login"
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate(location?.state ? location.state : '/');
+          navigate(location?.state ? location.state : '/login');
         }
       });
      }

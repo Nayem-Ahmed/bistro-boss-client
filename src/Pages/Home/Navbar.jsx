@@ -12,7 +12,7 @@ import useTanstrackQuery from '../../Hooks/useTanstrackQuery';
 const Navbar = () => { 
     const { user, logOut } = useContext(AuthContext);
     const [cart] = useTanstrackQuery();
-    console.log(user);
+    console.log(cart);
 
     document.addEventListener('scroll', () => {
         const header = document.querySelector('.navbar');
@@ -66,7 +66,7 @@ const Navbar = () => {
                 {
                     user?.email ?
                         <div className='flex items-center gap-2'>
-                            <img className='rounded-full w-8' src={user.photoURL} alt="" />
+                            <img className='rounded-full w-8' src={user?.photoURL} alt="" />
                             <Link>
                                 <button onClick={handlelogout} className="btn btn-neutral">Logout</button>
                             </Link>

@@ -4,15 +4,13 @@ import { CiShoppingCart ,CiHome } from "react-icons/ci";
 import { IoFilm , IoMenuSharp } from "react-icons/io5";
 import { MdOutlinePayment , MdEmail } from "react-icons/md";
 import { FaShoppingBag } from "react-icons/fa";
-
- 
-
+import useAdmin from '../Hooks/useAdmin';
 
 
 
 const Dashboard = () => {
     // TODO
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
  
     return (
         <div className="max-w-screen-xl mx-auto flex">
@@ -50,7 +48,7 @@ const Dashboard = () => {
 
                     <li className='flex mb-4'>
                         <IoFilm className='text-3xl mr-4'></IoFilm>
-                        <NavLink to='dashboard/reservation'>Reservation</NavLink>
+                        <NavLink to='/dashboard/payment'>Reservation</NavLink>
                     </li>
 
                     <li className='flex mb-4'>
@@ -87,6 +85,7 @@ const Dashboard = () => {
                     <li className='flex mb-4'>
                         < FaShoppingBag className='text-3xl mr-3'></FaShoppingBag >
                         <NavLink to='/'>Shop</NavLink>
+                       
                     </li>
                     <li className='flex mb-4'>
                         <MdEmail  className='text-3xl mr-3'></MdEmail  >

@@ -10,6 +10,7 @@ const Allusers = () => {
         queryKey:['users'],
         queryFn:async ()=>{
             const res = await axiosSecure.get('/users');
+            console.log(res.data);
             return res.data
         }
     })
@@ -56,6 +57,7 @@ const Allusers = () => {
         <div>
         <div>
             <h2 className='text-2xl'>Total Users : {users.length} </h2>
+            
         </div>
 
         <div className="overflow-x-auto mt-7">

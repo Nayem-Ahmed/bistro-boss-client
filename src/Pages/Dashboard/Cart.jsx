@@ -3,12 +3,14 @@ import useTanstrackQuery from '../../Hooks/useTanstrackQuery';
 import { MdOutlineDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 
 const Cart = () => {
     const [cart,refetch] = useTanstrackQuery();
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
     const axiosSecure = useAxiosSecure()
+ 
 
     const handledelete = (id) => {
         Swal.fire({
@@ -46,7 +48,10 @@ const Cart = () => {
             <div className='flex justify-evenly gap-5'>
                 <h2 className='text-2xl'>Items : {cart.length}</h2>
                 <h2 className='text-2xl'>TotalPrice : {totalPrice}</h2>
-                <button className='btn btn-secondary'>pay</button>
+              { cart.length ? <Link to='/dashboard/payment'> <button className='btn btn-secondary'>pay</button></Link> :
+               <button disabled className='btn btn-secondary'>pay</button>
+              }
+               
             </div>
 
             <div className="overflow-x-auto mt-7">
