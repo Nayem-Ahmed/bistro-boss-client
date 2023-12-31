@@ -30,7 +30,7 @@ const Footer = () => {
             </div>
            <div className='bg-[#151515] p-2'>
            <aside className='mt-7 text-center text-sm'>
-                <p>Copyright © {currentYear} - All right reserved by ACME Industries Ltd</p>
+                <p>Copyright © {currentYear} - All right reserved by Nayem Ahmed</p>
             </aside>
            </div>
         </footer>

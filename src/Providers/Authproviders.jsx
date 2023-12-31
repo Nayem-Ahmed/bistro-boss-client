@@ -5,7 +5,6 @@ import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 
- 
 
 export const AuthContext = createContext(null)
 
@@ -28,16 +27,12 @@ const Authproviders = ({children}) => {
     }
     const logingoogle =()=>{
         setLoading(true)
-        return signInWithPopup(auth,provider)
-        
-
+        return signInWithPopup(auth,provider)       
     }
     const logOut =()=>{
         setLoading(true)
         return signOut(auth)
-
     }
-
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,currentuser=>{
             setUser(currentuser)
@@ -50,8 +45,7 @@ const Authproviders = ({children}) => {
                     if(res.data.token){
                         localStorage.setItem('access token',res.data.token)
 
-                    }
-                     
+                    }                  
                 })
                 
             }else{
